@@ -18,13 +18,19 @@ class HashFunGenerator():
   def __init__(self, m):
     self.cache = set()
     self.size = m
+    self.p = random_prime_generator(self.size**2, self.size**3)
 
   def create(self):
-    p = random_prime_generator(self.size**2, self.size**3)
-    self.cache.add(p)
-    a = random.randint(1, p-1)
-    b = random.randint(0, p-1)
-    return lambda x: ((a * x + b) % p) % self.size
+    a = random.randint(1, self.p-1)
+    b = random.randint(0, self.p-1)
+    return lambda x: ((a * x + b) % self.p) % self.size
 
-  def stringify(self, fun):
-    return lambda s: sum((fun(ord(char)) for char in s))
+  def create_str_fun(self):
+    a = random.randint(1, self.p-1)
+    def hash(s):
+      h = 5381
+      for x in s:
+        h = (((h*a) + ord(x)) % self.p) % self.size
+      return h
+    return hash
+
