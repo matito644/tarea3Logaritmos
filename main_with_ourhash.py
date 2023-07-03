@@ -3,7 +3,7 @@
 # pip install mmh3
 # pip install bitarray
 import math
-import mmh3
+from hash_fun import HashFunGenerator
 from bitarray import bitarray
 #Un poquito de teoria primero
 # num es el numero esperado de objetos en el filtro de bloom
