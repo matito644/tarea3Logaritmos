@@ -3,9 +3,9 @@ from hash_fun import HashFunGenerator
 from bitarray import bitarray
 
 # n es el número esperado de objetos en el filtro de bloom
-# fp es la probabilidad de un falso positivo
+# fp es la probabilidad deseada de un falso positivo
 class BloomFilter():
-	def __init__(self, n: int, fp: float):
+	def __init__(self, n, fp):
 		# número óptimo para m
 		self.m = int(-(n * math.log(fp))/(math.log(2)**2))
 		# número óptimo de funciones de hash
