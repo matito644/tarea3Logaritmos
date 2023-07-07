@@ -2,7 +2,7 @@ import csv
 import time
 import matplotlib.pyplot as plt
 import numpy as np
-from main import BloomFilter, BloomFilterWithoutKandM
+from main import BloomFilterWithoutKandM
 import random
 N = 93889
 FP = 0.1
@@ -56,12 +56,15 @@ def generate_names_with_ratio(list_of_names, list_of_movies, n, r=0.7):
 # Ahora, por teoria esperamos que α = ln(2)/n; donde n = (# valores esperados en el filtro de bloom)
 # y como n = 93889 y fp = 0.1, esperamos que α ~ 7.382e-06 = 0.000007382
 # fijaremos un k para el test! y de ahí obtendremos m y luego mediremos la cantidad de falsos positivos!
+# la idea es ir mostrando varios k's hasta ver que converga hasta el numero esperado de 
+
+
 def test_and_msr_false_positives(bloomFilter: BloomFilterWithoutKandM, list_of_movies):
-    false_pos = 0
+    pos = 0
     for movie in list_of_movies:
         if bloomFilter.check(movie):
-            false_pos += 1
-    return false_pos
+            pos += 1
+    return pos - len(list_of_movies) * 0.7 
     
 def test_with_alpha(alpha, n=10000, k = 10, trials=20):
     m = int(k/alpha)
@@ -72,7 +75,7 @@ def test_with_alpha(alpha, n=10000, k = 10, trials=20):
         false_pos += test_and_msr_false_positives(bloomFilter, list_for_testing)
     false_pos_mean = false_pos / trials
     
-    return false_pos_mean - n*0.7
+    return false_pos_mean
     
 
 def test_a_list_of_alphas(list_of_alphas, k=10):
