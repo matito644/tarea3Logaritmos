@@ -43,3 +43,16 @@ class BloomFilter():
 			index+=1
 		# posiblemente estaba
 		return True
+
+class BloomFilterWithoutKandM(BloomFilter):
+	def __init__(self, n, fp, k, m):
+		self.k = k
+		self.m = m
+		self.M = bitarray(self.m)
+		# parte en cero
+		self.M.setall(0)
+		# funciones de hash
+		self.hashFunctions = []
+		for i in range(self.k):
+			fun = HashFunGenerator(self.m)
+			self.hashFunctions.append(fun)
