@@ -18,6 +18,10 @@ class HashFunGenerator():
         sum = 0
         index = 0
         for i in string:
+            # sum += self.listOfa_i[index%15] * ord(i)
             sum += self.listOfa_i[index] * ord(i)
             index+=1
+            # Solo para 15 caracteres (películas pueden tener más, por eso se corta)
+            if index == 15:
+                break
         return ((self.b + sum) % self.p) % self.m
