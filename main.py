@@ -45,7 +45,7 @@ class BloomFilter():
 		return True
 
 class BloomFilterWithoutKandM(BloomFilter):
-	def __init__(self, n, fp, k, m):
+	def __init__(self, k, m):
 		self.k = k
 		self.m = m
 		self.M = bitarray(self.m)
