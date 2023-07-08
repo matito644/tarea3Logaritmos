@@ -7,12 +7,10 @@ Basta con poner `pip install virtualenv` en la cmd y luego en un directorio `vir
 #### En linux y Mac
 Ejectuar `python3 -m venv venv` y luego `source ./venv/bin/activate` 
 
-Luego con ambos ejecutar `pip install requirements.txt`
-
 ### Instalar librerías
 Se añadió un archivo *requirements.txt* en el que se muestran las librerías utilizadas, dichas librerías son las que estaban instaladas en el entorno virtual a la hora de ejecutar todo. Para instalarlas:
 ```
-pip install requirements.txt
+pip install -r requirements.txt
 ```
 
 ### Compilar
