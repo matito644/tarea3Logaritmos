@@ -23,7 +23,7 @@ class BloomFilter():
 	# insertar un elemento en el filtro de bloom
 	def add(self, string):
 		index = 0
-		for i in range(self.k):
+		for _ in range(self.k):
 			# aplicar la función de hash
 			val = self.hashFunctions[index].hashForStrings(string)
 			# M[val] queda True

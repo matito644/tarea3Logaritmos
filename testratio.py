@@ -62,8 +62,9 @@ KOPT = 3
 MOPT = 449965
 
 def test_m_and_k_for_optimum(n, trials=3):
-    ks = list(range(1,6))
+    ks = list(range(1,8))
     ms = list(range(440000, 460001, 500))
+    promedio = []
     for k in ks:
         false_pos_list = []
         for m in ms:
@@ -86,7 +87,16 @@ def test_m_and_k_for_optimum(n, trials=3):
         plt.xlabel(r"Numero de bits (M)")
         plt.savefig(f"figures/Figura_k-{k}.png")
         print(f"Figura {k} listo!")
-
+        promedio.append(np.mean(false_pos_list))
+    fig = plt.figure()
+    plt.plot(ks, promedio, color='blue', marker='.')
+    ax = plt.gca()
+    ax.set_ylim([150,700])
+    plt.title(f"#falsos postitvos vs k")
+    plt.ylabel(r"Promedio de falsos positivos en el rango de M")
+    plt.xlabel(r"Numero de funciones de hash (k)")
+    plt.savefig(f"figures/Figura_k-hash.png")
+    print(f"Figura hash listo!")
 
 
 
@@ -97,24 +107,6 @@ def test_and_msr_false_positives(bloomFilter: BloomFilterWithoutKandM, list_of_m
         if bloomFilter.check(movie):
             pos += 1
     return pos - len(list_of_movies) * 0.7 
-    
-# def test_with_alpha(alpha, n=10000, k = 10, trials=20):
-#     m = int(k/alpha)
-#     bloomFilter, list_of_names, list_of_movies = load_test_case(k ,m)
-#     list_for_testing = generate_names_with_ratio(list_of_names=list_of_names, list_of_movies=list_of_movies, n=n)
-#     false_pos = 0
-#     for _ in range(trials):
-#         false_pos += test_and_msr_false_positives(bloomFilter, list_for_testing)
-#     false_pos_mean = false_pos / trials
-    
-#     return false_pos_mean
-    
-
-# def test_a_list_of_alphas(list_of_alphas, k=10):
-#     res= []    
-#     for alpha in list_of_alphas:
-#         res += [test_with_alpha(alpha, k=k)]
-#     return res
 
 
 if __name__ == "__main__":
