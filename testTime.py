@@ -66,7 +66,7 @@ def time_test(n = 1000, trials = 3):
     return (prom_fil, prom_normal)
 
 # graficar los tiempos
-def gogoPlot(min = 2, max = 5):
+def gogoPlot(min = 7, max = 16):
     l = []
     for n in (2**k for k in range(min, max)):
         l+= [time_test(n=n, trials=3)]
