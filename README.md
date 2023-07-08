@@ -2,9 +2,9 @@
 ## Algoritmos probabilísticos
 
 ### Setear el entorno virutal
-#### en windows
+#### En Windows
 Basta con poner `pip install virtualenv` en la cmd y luego en un directorio `virtualenv .venv` y luego ejecutar `.venv/scripts/activate`
-#### en linux y mac
+#### En linux y Mac
 Ejectuar `python3 -m venv venv` y luego `source ./venv/bin/activate` 
 
 Luego con ambos ejecutar `pip install requirements.txt`
