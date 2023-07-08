@@ -16,6 +16,12 @@ class HashFunGenerator():
     # según apunte
     def hashForStrings(self, string):
         sum = 0
-        for char, a_i in zip(string, self.listOfa_i):
-            sum += a_i * ord(char)
+        index = 0
+        for i in string:
+            # sum += self.listOfa_i[index%15] * ord(i)
+            sum += self.listOfa_i[index] * ord(i)
+            index+=1
+            # Solo para 15 caracteres (películas pueden tener más, por eso se corta)
+            if index == 15:
+                break
         return ((self.b + sum) % self.p) % self.m
