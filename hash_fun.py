@@ -8,7 +8,7 @@ class HashFunGenerator():
         self.p = 10**9 + 9
         self.listOfa_i = []
         # nombre más largo tiene 15 letras
-        for i in range(15):
+        for _ in range(15):
             a = random.randint(1, self.p-1)
             self.listOfa_i.append(a)
         self.b = random.randint(0, self.p-1)

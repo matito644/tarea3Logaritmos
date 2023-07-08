@@ -23,7 +23,7 @@ class BloomFilter():
 	# insertar un elemento en el filtro de bloom
 	def add(self, string):
 		index = 0
-		for i in range(self.k):
+		for _ in range(self.k):
 			# aplicar la función de hash
 			val = self.hashFunctions[index].hashForStrings(string)
 			# M[val] queda True
@@ -43,3 +43,16 @@ class BloomFilter():
 			index+=1
 		# posiblemente estaba
 		return True
+
+class BloomFilterWithoutKandM(BloomFilter):
+	def __init__(self, k, m):
+		self.k = k
+		self.m = m
+		self.M = bitarray(self.m)
+		# parte en cero
+		self.M.setall(0)
+		# funciones de hash
+		self.hashFunctions = []
+		for i in range(self.k):
+			fun = HashFunGenerator(self.m)
+			self.hashFunctions.append(fun)
